@@ -1,0 +1,17 @@
+# 原Nginx包依赖于alpine:3.5
+FROM nginx:1.13.7
+MAINTAINER Jin<cpp@strcpy.cn>
+
+# 设置时区
+RUN echo "Asia/Shanghai" > /etc/timezone && \
+    dpkg-reconfigure -f noninteractive tzdata
+
+# 复制文件到相关的文件夹
+COPY docker-file/nginx.conf /etc/nginx/nginx.conf
+COPY docker-file/fastcgi_params /etc/nginx/fastcgi_params
+COPY docker-file/default.conf /etc/nginx/conf.d
+
+# 创建工作目录
+RUN mkdir -p /var/www/app
+
+COPY docker-file/index.php /var/www/app
