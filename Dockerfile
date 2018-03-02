@@ -94,4 +94,6 @@ COPY docker-file/fastcgi_params /usr/local/openresty/nginx/conf/fastcgi_params
 COPY docker-file/nginx.conf     /usr/local/openresty/nginx/conf/nginx.conf
 COPY docker-file/default.conf   /usr/local/openresty/nginx/conf/conf.d/default.conf
 
+RUN addgroup -g 1000 -S www-data && adduser -u 1000 -D -S -G www-data www-data
+
 CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]
