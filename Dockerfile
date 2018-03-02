@@ -100,4 +100,7 @@ COPY docker-file/default.conf /etc/nginx/conf.d/default.conf
 RUN addgroup -g 1000 -S www-data \
  && adduser -u 1000 -D -S -G www-data www-data
 
+
+USER www-data
+
 CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]
