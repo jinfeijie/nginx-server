@@ -1,9 +1,6 @@
-# Dockerfile - alpine
-# https://github.com/openresty/docker-openresty
-
 FROM alpine:3.6
-
 LABEL maintainer="Evan Wies <evan@neomantra.net>"
+
 
 # Docker Build Arguments
 ARG RESTY_VERSION="1.13.6.1"
@@ -94,13 +91,7 @@ ENV PATH=$PATH:/usr/local/openresty/luajit/bin:/usr/local/openresty/nginx/sbin:/
 
 # Copy nginx configuration files
 COPY docker-file/fastcgi_params /usr/local/openresty/nginx/conf/fastcgi_params
-COPY docker-file/nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
-COPY docker-file/default.conf /etc/nginx/conf.d/default.conf
-
-RUN addgroup -g 1000 -S www-data \
- && adduser -u 1000 -D -S -G www-data www-data
-
-
-USER www-data
+COPY docker-file/nginx.conf     /usr/local/openresty/nginx/conf/nginx.conf
+COPY docker-file/default.conf   /usr/local/openresty/nginx/conf/conf.d/default.conf
 
 CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]
