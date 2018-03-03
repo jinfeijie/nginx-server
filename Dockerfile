@@ -48,6 +48,8 @@ ARG _RESTY_CONFIG_DEPS="--with-openssl=/tmp/openssl-${RESTY_OPENSSL_VERSION} --w
 # 3) Build OpenResty
 # 4) Cleanup
 
+RUN addgroup -g 1000 -S www-data && adduser -u 1000 -D -S -G www-data www-data
+
 RUN apk add --no-cache --virtual .build-deps \
         build-base \
         curl \
@@ -89,11 +91,17 @@ RUN apk add --no-cache --virtual .build-deps \
 # Add additional binaries into PATH for convenience
 ENV PATH=$PATH:/usr/local/openresty/luajit/bin:/usr/local/openresty/nginx/sbin:/usr/local/openresty/bin
 
+
 # Copy nginx configuration files
 COPY docker-file/fastcgi_params /usr/local/openresty/nginx/conf/fastcgi_params
 COPY docker-file/nginx.conf     /usr/local/openresty/nginx/conf/nginx.conf
 COPY docker-file/default.conf   /usr/local/openresty/nginx/conf/conf.d/default.conf
+COPY docker-file/enter.sh       /usr/local/enter.sh
 
-RUN addgroup -g 1000 -S www-data && adduser -u 1000 -D -S -G www-data www-data
 
-CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]
+# give sock file and enter file permission
+RUN mkdir -p /var/run/php7-fpm/ \
+    && chown -R www-data:www-data /var/run/php7-fpm/ \
+    && chmod -R 777 /var/run/php7-fpm/ /usr/local/enter.sh
+
+CMD ["/usr/local/enter.sh", "-g", "daemon off;"]
