@@ -102,6 +102,6 @@ COPY docker-file/enter.sh       /usr/local/enter.sh
 # give sock file and enter file permission
 RUN mkdir -p /var/run/php7-fpm/ \
     && chown -R www-data:www-data /var/run/php7-fpm/ \
-    && chmod -R 777 /var/run/php7-fpm/ /usr/local/enter.sh
+    && chmod -R 777 /var/run/php7-fpm/
 
-CMD ["/usr/local/enter.sh", "-g", "daemon off;"]
+CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]
