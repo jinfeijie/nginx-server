@@ -89,13 +89,4 @@ RUN apk add --no-cache --virtual .build-deps \
 # Add additional binaries into PATH for convenience
 ENV PATH=$PATH:/usr/local/openresty/luajit/bin:/usr/local/openresty/nginx/sbin:/usr/local/openresty/bin
 
-
-# Copy nginx configuration files
-COPY docker-file/fastcgi_params /usr/local/openresty/nginx/conf/fastcgi_params
-COPY docker-file/nginx.conf     /usr/local/openresty/nginx/conf/nginx.conf
-COPY docker-file/default.conf   /usr/local/openresty/nginx/conf/conf.d/default.conf
-
-# Create work dir
-RUN mkdir -p /var/www/app
-
 CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]
