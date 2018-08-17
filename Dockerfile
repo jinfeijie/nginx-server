@@ -6,6 +6,10 @@ MAINTAINER Jin<cpp@strcpy.cn>
 RUN echo "Asia/Shanghai" > /etc/timezone && \
     dpkg-reconfigure -f noninteractive tzdata
 
+#如何设置时区不正确的话可以试试以下方法
+#TZ=Asia/Shanghai
+#ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 # 复制文件到相关的文件夹
 COPY docker-file/nginx.conf /etc/nginx/nginx.conf
 COPY docker-file/fastcgi_params /etc/nginx/fastcgi_params
