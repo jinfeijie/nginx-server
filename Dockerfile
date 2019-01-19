@@ -3,9 +3,9 @@ LABEL maintainer="Evan Wies <evan@neomantra.net>"
 
 
 # Docker Build Arguments
-ARG RESTY_VERSION="1.13.6.1"
-ARG RESTY_OPENSSL_VERSION="1.0.2k"
-ARG RESTY_PCRE_VERSION="8.41"
+ARG RESTY_VERSION="1.13.6.2"
+ARG RESTY_OPENSSL_VERSION="1.1.1a"
+ARG RESTY_PCRE_VERSION="8.42"
 ARG RESTY_J="1"
 ARG RESTY_CONFIG_OPTIONS="\
     --with-file-aio \
@@ -40,7 +40,7 @@ ARG RESTY_CONFIG_OPTIONS="\
 ARG RESTY_CONFIG_OPTIONS_MORE=""
 
 # These are not intended to be user-specified
-ARG _RESTY_CONFIG_DEPS="--with-openssl=/tmp/openssl-${RESTY_OPENSSL_VERSION} --with-pcre=/tmp/pcre-${RESTY_PCRE_VERSION}"
+ARG _RESTY_CONFIG_DEPS="--with-openssl=/tmp/openssl-${RESTY_OPENSSL_VERSION} --with-openssl-opt='enable-tls1_3' --with-pcre=/tmp/pcre-${RESTY_PCRE_VERSION}"
 
 
 # 1) Install apk dependencies
