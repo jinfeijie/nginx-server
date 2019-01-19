@@ -3,9 +3,9 @@ LABEL maintainer="Evan Wies <evan@neomantra.net>"
 
 
 # Docker Build Arguments
-ARG RESTY_VERSION="1.13.6.1"
-ARG RESTY_OPENSSL_VERSION="1.0.2k"
-ARG RESTY_PCRE_VERSION="8.41"
+ARG RESTY_VERSION="1.13.6.2"
+ARG RESTY_OPENSSL_VERSION="1.1.1a"
+ARG RESTY_PCRE_VERSION="8.42"
 ARG RESTY_J="1"
 ARG RESTY_CONFIG_OPTIONS="\
     --with-file-aio \
