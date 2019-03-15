@@ -1,9 +1,9 @@
 FROM alpine:3.6
-LABEL maintainer="Evan Wies <evan@neomantra.net>"
+LABEL maintainer="JimCY<me@jinfeijie.cn>"
 
 
 # Docker Build Arguments
-ARG RESTY_VERSION="1.13.6.2"
+ARG RESTY_VERSION="1.15.8.1rc1"
 ARG RESTY_OPENSSL_VERSION="1.1.1a"
 ARG RESTY_PCRE_VERSION="8.42"
 ARG RESTY_J="1"
