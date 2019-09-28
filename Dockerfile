@@ -3,7 +3,7 @@ LABEL maintainer="JimCY<me@jinfeijie.cn>"
 
 
 # Docker Build Arguments
-ARG RESTY_VERSION="1.15.8.1rc1"
+ARG RESTY_VERSION="1.15.8.2"
 ARG RESTY_OPENSSL_VERSION="1.1.1a"
 ARG RESTY_PCRE_VERSION="8.42"
 ARG RESTY_J="1"
