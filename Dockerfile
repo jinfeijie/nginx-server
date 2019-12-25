@@ -1,5 +1,5 @@
 # 原Nginx包依赖于alpine:3.5
-FROM nginx:1.13.7
+FROM nginx:1.17.6
 MAINTAINER Jin<cpp@strcpy.cn>
 
 # 设置时区
